@@ -1,0 +1,24 @@
+type: marketplace
+title: GoKotlin!
+language: English
+summary: |-
+  <p>This is an introductory workhshop into the wondrous world of Kotlin provided by David Stibbe and Ali Meshkat.
+  The target audience is anyone with a bit of programming experience and an interest in learning Kotlin.
+  Through these assignments we will explore the most important aspects of the Kotlin language and how to apply these.
+  The presented materials are based on the official <a href="https://kotlinlang.org/docs/home.html">Kotlin documentation</a>.</p>
+
+  <h2>Topics</h2>
+  <ul>
+  <li>Basics</li>
+  <li>Nullable Types</li>
+  <li>Functions and Lambdas</li>
+  <li>Generics</li>
+  <li>Collections</li>
+  <li>Extensions</li>
+  <li>Objects</li>
+  <li>Testing</li>
+  </ul>
+programming_language: Kotlin
+environment_settings:
+  jvm_language_level: JDK_1_8
+yaml_version: 2
