@@ -69,7 +69,7 @@ local.properties
 target/
 pom.xml.tag
 pom.xml.releaseBackup
-pom.xml.next
+pom.xml.nextK
 release.properties
 
 build/
