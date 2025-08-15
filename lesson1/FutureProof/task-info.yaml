@@ -1,0 +1,4 @@
+type: edu
+files:
+  - name: task.md
+    visible: true 

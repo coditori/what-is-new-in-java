@@ -9,23 +9,6 @@ References:
 Java 24 Features
 
 Features (stable, testable)
-- **Reader.of(CharSequence)** (no JEP) – Adds a factory method to get a Reader over any CharSequence (e.g. String or StringBuilder), avoiding unnecessary copying.
-
-    ```java
-    Reader reader = Reader.of("Hello");  // reads from a String directly
-    ```
-
-    (No special setup; use Java 24 or later.)
-
-- **Process.waitFor(Duration)** (no JEP) – Overloads Process.waitFor(...) to accept a java.time.Duration instead of separate timeout and unit, simplifying waiting for process termination.
-
-    ```java
-    Process p = Runtime.getRuntime().exec("sleep 5");
-    p.waitFor(Duration.ofSeconds(10));  // wait up to 10 seconds
-    ```
-
-    (No special setup.)
-
 - **Class-File API** (JEP 484) – A new java.lang.classfile API for parsing, generating and transforming Java class files. This replaces ad-hoc libraries (ASM, BCEL, etc.) with a standard API.
 
     ```java
@@ -91,6 +74,15 @@ Features (stable, testable)
     ```
 
     (Use Java 24; no special flags. Signing with an ML-DSA key.)
+
+- **Warn upon Use of Memory-Access Methods in sun.misc.Unsafe** (JEP 498) – Issues a warning at run time on the first occasion that any memory-access method in sun.misc.Unsafe is invoked
+
+    ```java
+    var f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");
+    f.setAccessible(true);
+    var unsafe = (sun.misc.Unsafe) f.get(null);
+    unsafe.getInt(0L); // Triggers a warning in Java 24
+    ```
 
 Experiments (preview/incubator features)
 - **Scoped Values** (Fourth Preview, JEP 487) – A preview API (ScopedValue) for one-way sharing of immutable data from a caller to its callees (including child threads). It’s similar to ThreadLocal but immutable and scoped. Example:
@@ -214,6 +206,24 @@ Other Features (OS/hardware or non-code changes)
 
 - **ZGC Non-Generational Mode Removed** (JEP 490) – Removes the old non-generational mode of ZGC.  
   (The flag `-XX:-UseZGen` is removed; nothing to enable.)
+
+Other small API enhancements that do not form part of any JEP:
+- **Reader.of(CharSequence)** – Adds a factory method to get a Reader over any CharSequence (e.g. String or StringBuilder), avoiding unnecessary copying.
+
+    ```java
+    Reader reader = Reader.of("Hello");  // reads from a String directly
+    ```
+
+    (No special setup; use Java 24 or later.)
+
+- **Process.waitFor(Duration)** – Overloads Process.waitFor(...) to accept a java.time.Duration instead of separate timeout and unit, simplifying waiting for process termination.
+
+    ```java
+    Process p = Runtime.getRuntime().exec("sleep 5");
+    p.waitFor(Duration.ofSeconds(10));  // wait up to 10 seconds
+    ```
+
+    (No special setup.)
 
 Each item above reflects new Java 24 functionality. Code examples show minimal changes to use the feature (see notes for required flags).
 
